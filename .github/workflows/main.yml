@@ -11,8 +11,6 @@ jobs:
       with:
         image: 333666/juice-shop
 
-    - name: Archive code coverage results
-      uses: actions/upload-artifact@v3
-      with:
-        sarif_file: snyk.sarif
-        path: snyk.sarif
+    - name: Download all workflow run artifacts
+      uses: actions/download-artifact@v3
+
