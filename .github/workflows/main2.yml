@@ -19,3 +19,4 @@ jobs:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
         image: 333666/juice-shop
+        command: monitor
