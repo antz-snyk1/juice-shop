@@ -8,9 +8,22 @@ jobs:
     - name: Build a Docker image
       run: docker build -t 333666/juice-shop .
     - name: Run Snyk to check Docker image for vulnerabilities
+      continue-on-error: false
       # Snyk can be used to break the build when it detects vulnerabilities.
       # In this case we want to upload the issues to GitHub Code Scanning
-      continue-on-error: true
+      uses: snyk/actions/docker@master
+      env:
+        # In order to use the Snyk Action you will need to have a Snyk API token.
+        # More details in https://github.com/snyk/actions#getting-your-snyk-token
+        # or you can signup for free at https://snyk.io/login
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        image: 333666/juice-shop
+        command: test
+        
+    - name: Run Snyk to monitor this successful test
+      # Snyk can be used to break the build when it detects vulnerabilities.
+      # In this case we want to upload the issues to GitHub Code Scanning
       uses: snyk/actions/docker@master
       env:
         # In order to use the Snyk Action you will need to have a Snyk API token.
@@ -20,3 +33,10 @@ jobs:
       with:
         image: 333666/juice-shop
         command: monitor
+        
+    - name: Login to DockerHub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
