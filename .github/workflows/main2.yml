@@ -22,5 +22,3 @@ jobs:
         args: --file=Dockerfile
     - name: Download all workflow run artifacts
       uses: actions/download-artifact@v3
-      with:
-        sarif_file: snyk.sarif
