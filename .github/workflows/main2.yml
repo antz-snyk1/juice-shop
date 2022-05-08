@@ -19,6 +19,3 @@ jobs:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
         image: 333666/juice-shop
-        args: --file=Dockerfile
-    - name: Download all workflow run artifacts
-      uses: actions/download-artifact@v3
