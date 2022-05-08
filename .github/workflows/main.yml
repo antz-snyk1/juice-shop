@@ -10,7 +10,7 @@ jobs:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
         image: 333666/juice-shop
-        sarif_file: snyk.sarif
+        args: --file=Dockerfile
 
 
     - name: Download all workflow run artifacts
