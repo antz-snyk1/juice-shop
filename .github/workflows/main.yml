@@ -1,3 +1,5 @@
+# Build a container image, test it, if test passes, monitor it, then push it to Docker Hub
+#
 # Repo or Org level vars to create before running: SNYK_TOKEN, DOCKERHUB_TOKEN
 # Job level vars to set below: DOCKERHUB_USERNAME, DOCKERHUB_REPO_NAME
 
