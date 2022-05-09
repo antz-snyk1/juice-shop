@@ -5,10 +5,12 @@ on: push
 jobs:
   snyk:
     runs-on: ubuntu-latest
+    
     steps:
     - uses: actions/checkout@v2
     - name: Build a Docker image
       run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO_NAME }} .
+
     - name: Run `snyk test` to check Docker image for vulnerabilities
       # Snyk can be used to break the build when it detects vulnerabilities
       # toggle the below 'continue-on-error' statement to 'false' for this
@@ -20,7 +22,7 @@ jobs:
         image: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO_NAME }}
         command: test
         
-    - name: Run `snyk monitor` if `snyk test` is successful
+    - name: Run `snyk monitor` if `snyk test` does not fail
       uses: snyk/actions/docker@master
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
