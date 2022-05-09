@@ -12,8 +12,8 @@ jobs:
       DOCKERHUB_REPO_NAME: juice-shop
 
     steps:
+    - uses: actions/checkout@v2
     - name: Build a Docker image
-      uses: actions/checkout@v2
       run: docker build -t ${{ env.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPO_NAME }} .
 
     - name: Run `snyk test` to check Docker image for vulnerabilities
