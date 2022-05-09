@@ -1,4 +1,4 @@
-# Repo or Org level vars to create before running: SNYK_TOKEN, DOCKERHUB_TOKEN, DOCKERHUB_REPO_NAME, DOCKERHUB_REPO_NAME
+# Repo or Org level vars to create before running: SNYK_TOKEN, DOCKERHUB_TOKEN, DOCKERHUB_USERNAME, DOCKERHUB_REPO_NAME
 
 name: Snyk Container
 on: push
