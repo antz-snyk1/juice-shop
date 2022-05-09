@@ -1,3 +1,5 @@
+# Repo level vars to create: SNYK_TOKEN, DOCKERHUB_USERNAME, DOCKERHUB_REPO_NAME, DOCKERHUB_REPO_NAME
+
 name: Snyk Container
 on: push
 jobs:
@@ -6,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build a Docker image
-      run: docker build -t 333666/juice-shop .
+      run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO_NAME }} .
     - name: Run `snyk test` to check Docker image for vulnerabilities
       # Snyk can be used to break the build when it detects vulnerabilities
       # toggle the below to 'false' for this
@@ -15,15 +17,13 @@ jobs:
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
-        image: 333666/juice-shop
+        image: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO_NAME }}
         command: test
         
     - name: Run `snyk monitor` if `snyk test` is successful
       uses: snyk/actions/docker@master
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
-        image: 333666/juice-shop
+        image: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO_NAME }}
         command: monitor
         
     - name: Login to DockerHub
