@@ -7,7 +7,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build a Docker image
       run: docker build -t 333666/juice-shop .
-    - name: Run Snyk to check Docker image for vulnerabilities
+    - name: Run `snyk test` to check Docker image for vulnerabilities
       # Snyk can be used to break the build when it detects vulnerabilities
       # toggle the below to 'false' for this
       continue-on-error: true
@@ -18,12 +18,12 @@ jobs:
         image: 333666/juice-shop
         command: test
         
-    - name: Run `snyk monitor` if `snyk test` is succesful
+    - name: Run `snyk monitor` if `snyk test` is successful
       uses: snyk/actions/docker@master
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
-        image: 333666/juice-shop
+        image: 333666/juice_shop
         command: monitor
         
     - name: Login to DockerHub
