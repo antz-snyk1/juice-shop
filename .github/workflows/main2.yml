@@ -1,4 +1,4 @@
-# Repo level vars to create: SNYK_TOKEN, DOCKERHUB_USERNAME, DOCKERHUB_REPO_NAME, DOCKERHUB_REPO_NAME
+# Repo or Org level vars to create before running: SNYK_TOKEN, DOCKERHUB_TOKEN, DOCKERHUB_REPO_NAME, DOCKERHUB_REPO_NAME
 
 name: Snyk Container
 on: push
@@ -11,7 +11,7 @@ jobs:
       run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO_NAME }} .
     - name: Run `snyk test` to check Docker image for vulnerabilities
       # Snyk can be used to break the build when it detects vulnerabilities
-      # toggle the below to 'false' for this
+      # toggle the below 'continue-on-error' statement to 'false' for this
       continue-on-error: true
       uses: snyk/actions/docker@master
       env:
