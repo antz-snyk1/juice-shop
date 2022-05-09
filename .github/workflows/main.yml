@@ -21,7 +21,7 @@ jobs:
     - name: Run `snyk test` to check Docker image for vulnerabilities
       # Snyk can be used to break the build when it detects vulnerabilities
       # toggle the below 'continue-on-error' statement to 'false' for this
-      continue-on-error: true
+      continue-on-error: false
       uses: snyk/actions/docker@master
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
