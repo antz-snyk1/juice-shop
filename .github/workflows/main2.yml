@@ -18,7 +18,7 @@ jobs:
         image: 333666/juice-shop
         command: test
         
-    - name: Run Snyk to monitor this successful test
+    - name: Run `snyk monitor` if `snyk test` is succesful
       uses: snyk/actions/docker@master
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
