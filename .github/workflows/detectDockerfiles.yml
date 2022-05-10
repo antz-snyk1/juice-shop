@@ -1,0 +1,20 @@
+name: detectDockerfiles
+
+on: [push, pull_request]
+
+jobs:  
+  runs-on: ubuntu-latest
+
+    steps:
+    - name: clone SCM-Refresh tool 
+      uses: actions/checkout@v3
+      with:
+        repository: snyk-tech-services/snyk-scm-refresh
+    
+    - name: build requirements.txt
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+      with:
+        python-version: '3.9'
+        cache: 'pip'
+    - run: pip install -r requirements.txt
