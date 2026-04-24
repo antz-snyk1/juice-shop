@@ -1,4 +1,4 @@
-FROM node:14.19-stretch-slim
+FROM cgr.dev/chainguard/node:14.19-stretch-slim
 
 RUN apt-get -y update && apt-get -y install ca-certificates apt-transport-https
 
